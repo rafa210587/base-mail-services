@@ -1,0 +1,61 @@
+#CONFIGURATIONS PROJECT
+spring: 
+  application:
+    name: trust-base-mail-services
+  profiles:
+    active: dev
+  #ACCESS TO DATABASE
+  cloud:
+    config:
+      uri: https://comum-config-git.interno.srmasset.com:443
+      name: mail-services
+      server:
+        git:
+          basedir: base-model
+      label: desenvolvimento
+  batch:
+    job:
+      enabled: false
+server:  
+  port: 5006
+
+#ACCESS EUREKA
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+     defaultZone: https://comum-server-eureka1-desenvolvimento.interno.srmasset.com:443/eureka
+  instance:
+    status-page-url: https://${eureka.instance.hostname}:443/info
+    health-check-url: https://${eureka.instance.hostname}:443/health
+    home-page-url: https://${eureka.instance.hostname}:443/
+    prefer-ip-address: true
+
+    
+#MAIL PROPERTIES    
+app:
+  mail:
+    smtp:
+      host: smtp.office365.com
+      port: 587
+      auth: true
+      transport-protocol: smtp
+    from: srmasset@srmasset.com.br
+    user: srmasset@srmasset.com.br
+    pwd: srm@ti011
+    ssl: false
+    starttls-enable: true
+    auth: true
+    debug: true
+  integration:
+   trust-base-mail-services:
+    context: /trust-base-data-access-services/v1
+    uri: http://10.174.1.48:5001
+    #data-access-services-uri: trust-base-data-access-services
+#ACCESS TO THE SECURITY MODULE
+    security-context: /trust-base-security-services/v1
+    #security-uri: trust-base-security-services
+    security-uri: http://10.174.1.48:5004
+    security-on: false
+    
