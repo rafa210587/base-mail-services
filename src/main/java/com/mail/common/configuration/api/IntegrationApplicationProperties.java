@@ -13,7 +13,7 @@ import lombok.Data;
  */
 @Configuration
 //@PropertySource("classpath:application-dev.yml ")
-@ConfigurationProperties("app.integration.trust-base-mail-services")
+@ConfigurationProperties("app.integration.base-mail-services")
 @Data
 @Primary
 public class IntegrationApplicationProperties {

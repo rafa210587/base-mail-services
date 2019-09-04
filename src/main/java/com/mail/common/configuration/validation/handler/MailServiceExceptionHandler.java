@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.mail.common.configuration.validation.domain.StandardError;
-import com.mail.common.configuration.validation.layers.TrustHubException;
+import com.mail.common.configuration.validation.layers.GeneralException;
 import com.mail.common.util.Constants;
 
 import lombok.extern.slf4j.Slf4j;
@@ -22,8 +22,8 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class MailServiceExceptionHandler {
 
-	@ExceptionHandler(TrustHubException.class)
-	public ResponseEntity<StandardError> trustHubException(TrustHubException e, HttpServletRequest request) {
+	@ExceptionHandler(GeneralException.class)
+	public ResponseEntity<StandardError> trustHubException(GeneralException e, HttpServletRequest request) {
 		StandardError err = new StandardError(new Timestamp(System.currentTimeMillis()), e.getTrustHubError().getErrorCode(), e.getTrustHubError().getErrorDescription(), e.getMessage(), request.getRequestURI());		
 		if(e != null && e.getMessage() != null) {
 			if(e.getMessage().contains(Constants.TIMESTAMP)	

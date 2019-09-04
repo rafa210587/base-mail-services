@@ -1,7 +1,7 @@
 package com.mail.common.configuration.validation;
 
 
-import com.mail.common.configuration.validation.domain.TrustHubError;
+import com.mail.common.configuration.validation.domain.GeneralError;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,7 +12,7 @@ import lombok.Getter;
  */
 @Getter
 @AllArgsConstructor
-public enum MailServiceError implements TrustHubError {
+public enum MailServiceError implements GeneralError {
 
 	ERROR_INTEGRATION_BUSINESS(1, "ERROR IN THE API (INTEGRATION SERVICE) ERROR IN BUSINESS LAYER"), 
 	ERROR_INTEGRATION_SERVICE(2, "ERROR IN THE API (SERVICE INTEGRATION) ERROR ON THE SERVICE LAYER"),
